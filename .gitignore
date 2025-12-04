@@ -5,3 +5,4 @@ __pycache__/
 firebase-key.json
 runpod_deploy.zip
 .env
+*.csv
