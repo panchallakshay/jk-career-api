@@ -1,61 +1,38 @@
 import os
 import requests
 
-DATA_DIR = "data"
-os.makedirs(DATA_DIR, exist_ok=True)
+BASE_URL = "https://github.com/panchallakshay/jk-career-api/releases/download/v1/"
 
-FILES = {
-    "Career QA Dataset.csv":
-        "https://github.com/panchallakshay/jk-career-api/releases/download/v1/Career%20QA%20Dataset.csv",
-
-    "CareerRecommenderDataset.csv":
-        "https://github.com/panchallakshay/jk-career-api/releases/download/v1/CareerRecommenderDataset.csv",
-
-    "Career_Database.csv":
-        "https://github.com/panchallakshay/jk-career-api/releases/download/v1/Career_Database.csv",
-
-    "Career_Enrichment_Data.csv":
-        "https://github.com/panchallakshay/jk-career-api/releases/download/v1/Career_Enrichment_Data.csv",
-
-    "Career_Knowledge_Master_JK_Augmented.csv":
-        "https://github.com/panchallakshay/jk-career-api/releases/download/v1/Career_Knowledge_Master_JK_Augmented.csv",
-
-    "JK_Career_Guidance_Master_Dataset.csv":
-        "https://github.com/panchallakshay/jk-career-api/releases/download/v1/JK_Career_Guidance_Master_Dataset.csv",
-
-    "JK_Colleges_Complete.csv":
-        "https://github.com/panchallakshay/jk-career-api/releases/download/v1/JK_Colleges_Complete.csv",
-
-    "JK_Entrance_Exams_Complete.csv":
-        "https://github.com/panchallakshay/jk-career-api/releases/download/v1/JK_Entrance_Exams_Complete.csv",
-
-    "JK_Scholarships_Complete.csv":
-        "https://github.com/panchallakshay/jk-career-api/releases/download/v1/JK_Scholarships_Complete.csv",
-
-    "JK_Skills_Development_Guide.csv":
-        "https://github.com/panchallakshay/jk-career-api/releases/download/v1/JK_Skills_Development_Guide.csv",
-
-    "Job Datsset.csv":
-        "https://github.com/panchallakshay/jk-career-api/releases/download/v1/Job%20Datsset.csv"
+DATASETS = {
+    "Career.QA.Dataset.csv": "Career.QA.Dataset.csv",
+    "CareerRecommenderDataset.csv": "CareerRecommenderDataset.csv",
+    "Career_Database.csv": "Career_Database.csv",
+    "Career_Enrichment_Data.csv": "Career_Enrichment_Data.csv",
+    "Career_Knowledge_Master_JK_Augmented.csv": "Career_Knowledge_Master_JK_Augmented.csv",
+    "JK_Career_Guidance_Master_Dataset.csv": "JK_Career_Guidance_Master_Dataset.csv",
+    "JK_Colleges_Complete.csv": "JK_Colleges_Complete.csv",
+    "JK_Entrance_Exams_Complete.csv": "JK_Entrance_Exams_Complete.csv",
+    "JK_Scholarships_Complete.csv": "JK_Scholarships_Complete.csv",
+    "JK_Skills_Development_Guide.csv": "JK_Skills_Development_Guide.csv",
+    "Job.Dataset.csv": "Job.Dataset.csv"
 }
 
-def download_all():
-    for filename, url in FILES.items():
-        path = os.path.join(DATA_DIR, filename)
+def download_file(filename):
+    url = BASE_URL + filename
+    print(f"⬇ Downloading {filename} ...")
 
-        if os.path.exists(path):
-            print(f"✔ {filename} already exists")
-            continue
-
-        print(f"⬇ Downloading {filename} ...")
-        r = requests.get(url)
-
-        if r.status_code == 200:
-            with open(path, "wb") as f:
-                f.write(r.content)
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            with open(filename, "wb") as f:
+                f.write(response.content)
             print(f"✔ Downloaded {filename}")
         else:
-            print(f"✖ Failed to download {filename}: {r.status_code}")
+            print(f"✖ Failed to download {filename}: {response.status_code}")
+    except Exception as e:
+        print(f"✖ Error downloading {filename}: {e}")
 
 if __name__ == "__main__":
-    download_all()
+    for filename in DATASETS:
+        download_file(filename)
+
