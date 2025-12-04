@@ -9,5 +9,5 @@ class Query(BaseModel):
 
 @app.post("/ask")
 async def ask_ai(query: Query):
-    response = run_ai(query.prompt)
-    return {"ok": True, "response": response}
+    result = run_ai(query.prompt)
+    return {"ok": True, "response": result}
