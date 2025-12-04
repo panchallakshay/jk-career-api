@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import pandas as pd
 import os
-from download_data import download_all_files
 
 # Download datasets when service starts
 download_all_files()
