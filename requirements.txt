@@ -1,4 +1,3 @@
-flask
-flask-cors
-firebase-admin
-openai
+fastapi
+uvicorn[standard]
+pydantic
