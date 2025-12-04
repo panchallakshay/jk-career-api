@@ -1,21 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-import pandas as pd
-import os
-
-# Download datasets when service starts
-download_all_files()
-
-DATA_DIR = "data"
-
-def load_csv(filename):
-    path = os.path.join(DATA_DIR, filename)
-    if os.path.exists(path):
-        return pd.read_csv(path)
-    return None
-
-career_db = load_csv("Career_Database.csv")
-recommender_db = load_csv("CareerRecommenderDataset.csv")
+from ai_engine import ai_answer     # ⬅ REAL AI imported
 
 app = FastAPI(title="JK Career Guidance API")
 
@@ -24,21 +9,15 @@ class Query(BaseModel):
 
 @app.post("/ask")
 async def ask_model(query: Query):
-    return {"ok": True, "response": f"You asked: {query.prompt}"}
+    response_text = ai_answer(query.prompt)
+    return {"ok": True, "response": response_text}
 
 class Answers(BaseModel):
     answers: list
 
 @app.post("/recommend")
-async def recommend_career(data: Answers):
-    return {
-        "ok": True,
-        "result": {
-            "career": "Software Engineer",
-            "confidence": 0.92
-        }
-    }
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("server:app", host="0.0.0.0", port=8000)
+async def recommend(data: Answers):
+    prompt = "Student responses: " + ", ".join(data.answers) + \
+             ". Suggest best career options for Jammu & Kashmir students."
+    result = ai_answer(prompt)
+    return {"ok": True, "result": result}
