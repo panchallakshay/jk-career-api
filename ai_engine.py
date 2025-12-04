@@ -1,25 +1,18 @@
 import os
 from openai import OpenAI
 
-API_KEY = os.getenv("OPENROUTER_API_KEY")
+MODEL_NAME = os.getenv("MODEL_NAME", "openai/gpt-3.5-turbo")
+API_KEY = os.getenv("OPENAI_API_KEY")
 if not API_KEY:
-    raise ValueError("❌ ERROR: OPENROUTER_API_KEY is not set.")
+    raise ValueError("OPENAI_API_KEY not set.")
 
-client = OpenAI(
-    base_url="https://openrouter.ai/api/v1",
-    api_key=API_KEY
-)
+client = OpenAI(api_key=API_KEY)
 
-def run_ai(prompt: str) -> str:
-    try:
-        response = client.chat.completions.create(
-            model="meta-llama/llama-3.1-8b-instruct",
-            messages=[
-                {"role": "system", "content": "You are KashmirDisha, an expert career counselor."},
-                {"role": "user", "content": prompt}
-            ],
-            max_tokens=300
-        )
-        return response.choices[0].message.content
-    except Exception as e:
-        return f"❌ AI Engine Error: {e}"
+def chat(messages, max_tokens=500, temperature=0.2):
+    resp = client.chat.completions.create(
+        model=MODEL_NAME,
+        messages=messages,
+        max_tokens=max_tokens,
+        temperature=temperature
+    )
+    return resp.choices[0].message.content

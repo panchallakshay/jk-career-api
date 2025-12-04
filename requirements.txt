@@ -1,7 +1,5 @@
 fastapi
-uvicorn[standard]
-pydantic
-pandas
-requests
+uvicorn
+python-multipart
 openai
 firebase-admin
