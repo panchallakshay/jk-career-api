@@ -1,8 +1,8 @@
-venv/
+firebase-key.json
 __pycache__/
 *.pyc
-.DS_Store
-firebase-key.json
-runpod_deploy.zip
 .env
-*.csv
+*.log
+.DS_Store
+Career_Report_*.txt
+test_*.py
