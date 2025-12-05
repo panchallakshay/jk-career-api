@@ -15,7 +15,7 @@ except ImportError:
 # --- CONFIGURATION ---
 DATASET_PATH = 'Career_Knowledge_Master_JK_Augmented.csv'
 MODEL_NAME = 'openai/gpt-3.5-turbo'
-API_KEY = "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"
+API_KEY = "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"
 FIREBASE_KEY_PATH = 'firebase-key.json'
 
 def get_greeting():
