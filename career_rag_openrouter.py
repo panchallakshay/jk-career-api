@@ -15,7 +15,7 @@ except ImportError:
 # --- CONFIGURATION ---
 DATASET_PATH = 'Career_Knowledge_Master_JK_Augmented.csv'
 MODEL_NAME = 'openai/gpt-3.5-turbo'
-API_KEY = "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"
+API_KEY = "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"
 FIREBASE_KEY_PATH = 'firebase-key.json'
 
 def get_greeting():
@@ -399,18 +399,36 @@ MANDATORY REPORT STRUCTURE:
 4. J&K COLLEGES - GDCs FIRST (CRITICAL - Use the database above):
    
    GOVERNMENT DEGREE COLLEGES in {user_data.get('district')} and nearby (TOP PRIORITY):
-   - List 5-7 specific GDCs from the database with EXACT details:
-     * GDC [Name], [District] - Fees: Rs.[exact amount], Courses: [list], Hostel: [Yes/No]
-     * Include contact info if available
+   - List 5-7 specific GDCs with COMPLETE details:
+     
+     Example format (use REAL colleges from database):
+     * GDC Kathua - Fees: Rs.8,500/year, Courses: BA, B.Sc, B.Com, BCA, Contact: 01922-234567, Hostel: Yes (Rs.15,000/year)
+     * GDC Udhampur - Fees: Rs.7,200/year, Courses: BA, B.Sc, B.Com, Contact: 01992-245678, Hostel: No
+     
+     For EACH college include:
+     - Exact name and location
+     - Annual fees (tuition + exam)
+     - Available courses relevant to student
+     - Contact number if available
+     - Hostel availability and cost
+     - Admission criteria (percentage required)
    
-   Why GDCs: Rs.5,000-12,000/year fees, quality education, close to home
+   Why GDCs: Rs.5,000-12,000/year fees, quality education, close to home, easy admission
    
-   CENTRAL UNIVERSITIES:
-   - University of Kashmir, CUK, CUJ, IUST (with fees and courses)
+   CENTRAL UNIVERSITIES (with EXACT details):
+   - University of Kashmir, Srinagar - Fees: Rs.15,000-25,000/year, Courses: [relevant], Admission: CUET, Contact: 0194-2424000
+   - Central University of Kashmir (CUK), Ganderbal - Fees: Rs.18,000/year, CUET based
+   - Central University of Jammu (CUJ) - Fees: Rs.20,000/year, CUET based
+   - Islamic University of Science & Technology (IUST), Awantipora - Fees: Rs.25,000/year
    
    PREMIUM INSTITUTIONS (if percentile allows):
-   - NIT Srinagar (Rs.1,46,000/year, JEE Main 85+ percentile)
-   - IIT Jammu (Rs.2,00,000/year, JEE Advanced)
+   - NIT Srinagar - Fees: Rs.1,46,000/year (B.Tech), JEE Main 85+ percentile, Hostel: Rs.25,000/year
+   - IIT Jammu - Fees: Rs.2,00,000/year (B.Tech), JEE Advanced, Hostel: Rs.30,000/year
+   - IIIM Jammu - Fees: Rs.1,20,000/year (B.Tech), JEE Main 80+ percentile
+   
+   PRIVATE COLLEGES (if needed):
+   - List 2-3 with exact fees (Rs.50,000-1,50,000/year range)
+   - Include placement records if known
 
 5. ENTRANCE EXAMS:
    - Which exam: [JEE/NEET/CUET/etc.]

@@ -232,20 +232,59 @@ async def generate_report(request: ReportRequest, x_api_key: str = Header(None))
     prompt = f"""Generate a comprehensive career guidance report for this J&K student.
 
 STUDENT PROFILE:
-{complete_profile}
+- Name: {complete_profile.get('name')}
+- District: {complete_profile.get('district')}
+- 12th Stream: {complete_profile.get('12th_stream')}
+- 12th Marks: {complete_profile.get('12th_percentage')}
+- 10th Marks: {complete_profile.get('10th_percentage')}
+- Interests: {complete_profile.get('interests')}
+- Current Goal: {complete_profile.get('current_goal')}
 
 Provide a detailed report with:
-1. RECOMMENDED COURSE (specific name)
-2. Why this course matches their profile
-3. ALTERNATIVE COURSES (2-3 options)
-4. 12-MONTH ROADMAP
-5. J&K COLLEGES (Government Degree Colleges first)
-6. ENTRANCE EXAMS
-7. SCHOLARSHIPS
-8. SKILLS TO DEVELOP
-9. RESOURCES
 
-Use PLAIN TEXT format, NO markdown. Be specific and actionable."""
+1. RECOMMENDED COURSE (specific name like B.Tech in Computer Science, B.Sc in IT, BBA, etc.)
+   - Why this course matches their profile
+   - Career outcomes and job opportunities
+
+2. ALTERNATIVE COURSES (2-3 backup options with reasons)
+
+3. 12-MONTH ROADMAP (month-by-month action plan)
+
+4. J&K COLLEGES - MUST INCLUDE SPECIFIC DETAILS:
+   
+   GOVERNMENT DEGREE COLLEGES (TOP PRIORITY):
+   - List 5-7 specific GDCs in {complete_profile.get('district')} and nearby districts
+   - For EACH college provide:
+     * Exact name and location (e.g., GDC Kathua, GDC Udhampur)
+     * Annual fees (e.g., Rs.7,000-12,000/year)
+     * Available courses relevant to student
+     * Contact number if known
+     * Hostel availability and cost
+     * Admission criteria (percentage required)
+   
+   CENTRAL UNIVERSITIES (with exact details):
+   - University of Kashmir, Srinagar - Fees, courses, admission process
+   - Central University of Kashmir (CUK), Ganderbal - Fees, CUET requirement
+   - Central University of Jammu (CUJ) - Fees, courses
+   - IUST Awantipora - Fees, courses
+   
+   PREMIUM INSTITUTIONS (if eligible):
+   - NIT Srinagar - Fees: Rs.1,46,000/year, JEE Main requirement, hostel cost
+   - IIT Jammu - Fees: Rs.2,00,000/year, JEE Advanced requirement
+   - IIIM Jammu - Fees, JEE Main requirement
+
+5. ENTRANCE EXAMS (specific exam names, expected scores, preparation timeline)
+
+6. SCHOLARSHIPS (specific scholarship names with amounts):
+   - Based on percentile (90+, 80-90, 70-80)
+   - J&K Government schemes with exact amounts
+   - Eligibility criteria
+
+7. SKILLS TO DEVELOP (specific technical and soft skills)
+
+8. RESOURCES (YouTube channels, books, websites)
+
+Use PLAIN TEXT format, NO markdown. Be specific with college names, fees, and contact information.
     
     try:
         response = client.chat.completions.create(
