@@ -154,7 +154,7 @@ STUDENT PROFILE (From Database):
     dataset_results = search_dataset(search_terms)
     
     # System prompt
-    system_prompt = f"""You are KashmirDisha, an expert career counselor for J&K students with 20+ years of experience.
+    system_prompt = f"""You are NavRiti AI, an expert career counselor for J&K students with 20+ years of experience.
 
 {profile}
 
@@ -310,7 +310,7 @@ def main():
         
         greeting = get_greeting()
         print("\n" + "="*80)
-        print(f"🎓 {greeting}! Welcome to KASHMIR DISHA (LM Studio Edition)")
+        print(f"🎓 {greeting}! Welcome to NAVRITI AI (LM Studio Edition)")
         print("Professional Career Counseling with Local AI")
         print("="*80)
         
@@ -331,7 +331,7 @@ def main():
         conduct_career_assessment(user_data, client)
         
         print("\n" + "="*80)
-        print("🙏 Thank you for using Kashmir Disha!")
+        print("🙏 Thank you for using NavRiti AI!")
         print("="*80)
         
     except KeyboardInterrupt:

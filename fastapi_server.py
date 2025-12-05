@@ -19,7 +19,7 @@ BACKEND_API_KEY = os.getenv('BACKEND_API_KEY', "navriti_" + secrets.token_urlsaf
 
 # Initialize FastAPI
 app = FastAPI(
-    title="Kashmir Disha Career Counseling API",
+    title="NavRiti AI Career Counseling API",
     description="AI-powered career counseling for J&K students",
     version="1.0.0"
 )
@@ -139,7 +139,7 @@ def get_user_data_from_firebase(user_id: str):
 async def root():
     """Root endpoint"""
     return {
-        "message": "Kashmir Disha Career Counseling API",
+        "message": "NavRiti AI Career Counseling API",
         "version": "1.0.0",
         "status": "running"
     }
@@ -149,7 +149,7 @@ async def health_check():
     """Health check endpoint"""
     return {
         "status": "healthy",
-        "service": "Kashmir Disha Career Counseling API",
+        "service": "NavRiti AI Career Counseling API",
         "version": "1.0.0"
     }
 
@@ -188,7 +188,7 @@ STUDENT PROFILE:
 - Current Goal: {user_data.get('current_goal')}
 """
     
-    system_prompt = f"""You are KashmirDisha, an expert career counselor for J&K students.
+    system_prompt = f"""You are NavRiti AI, an expert career counselor for J&K students.
 
 {profile}
 
@@ -275,7 +275,7 @@ Use PLAIN TEXT format, NO markdown. Be specific and actionable."""
 async def startup_event():
     """Print API key on startup"""
     print("\n" + "="*80)
-    print("🚀 KASHMIR DISHA API SERVER (FastAPI)")
+    print("🚀 NAVRITI AI API SERVER (FastAPI)")
     print("="*80)
     print(f"\n🔑 Your API Key (save this securely):")
     print(f"   {BACKEND_API_KEY}")

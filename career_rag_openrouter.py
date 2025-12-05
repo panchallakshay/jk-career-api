@@ -200,7 +200,7 @@ STUDENT PROFILE (From Database):
     dataset_results = search_dataset(search_terms)
     
     # Enhanced system prompt for career counseling
-    system_prompt = f"""You are KashmirDisha, an expert career counselor for J&K students with 20+ years of experience.
+    system_prompt = f"""You are NavRiti AI, an expert career counselor for J&K students with 20+ years of experience.
 
 {profile}
 
@@ -573,7 +573,7 @@ def main():
         
         greeting = get_greeting()
         print("\n" + "="*80)
-        print(f"🎓 {greeting}! Welcome to KASHMIR DISHA")
+        print(f"🎓 {greeting}! Welcome to NAVRITI AI")
         print("Professional Career Counseling with Database Integration")
         print("="*80)
         
@@ -597,7 +597,7 @@ def main():
             print("See FIREBASE_SETUP.md for instructions.")
         
         print("\n" + "="*80)
-        print("🙏 Thank you for using Kashmir Disha!")
+        print("🙏 Thank you for using NavRiti AI!")
         print("="*80)
         
     except KeyboardInterrupt:
