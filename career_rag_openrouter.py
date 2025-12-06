@@ -14,9 +14,10 @@ except ImportError:
 
 # --- CONFIGURATION ---
 DATASET_PATH = 'Career_Knowledge_Master_JK_Augmented.csv'
-MODEL_NAME = 'openai/gpt-3.5-turbo'
-API_KEY = "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"
+MODEL_NAME = 'llama-3.3-70b-versatile'  # Groq's best model
+API_KEY = os.getenv('GROQ_API_KEY', 'your-groq-api-key-here')  # Set via environment variable
 FIREBASE_KEY_PATH = 'firebase-key.json'
+API_BASE_URL = "https://api.groq.com/openai/v1"  # Groq API endpoint
 
 def get_greeting():
     """Get time-appropriate greeting"""
@@ -584,8 +585,9 @@ def main():
         return
     
     try:
+        # Initialize Groq client (OpenAI-compatible)
         client = OpenAI(
-            base_url="https://openrouter.ai/api/v1",
+            base_url=API_BASE_URL,
             api_key=API_KEY,
         )
         

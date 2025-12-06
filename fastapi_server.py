@@ -10,9 +10,10 @@ from openai import OpenAI
 
 # --- CONFIGURATION ---
 DATASET_PATH = 'Career_Knowledge_Master_JK_Augmented.csv'
-MODEL_NAME = 'openai/gpt-3.5-turbo'
-OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY', "YOUR_OPENROUTER_API_KEY_HERE")
+MODEL_NAME = 'llama-3.3-70b-versatile'  # Groq's best model
+GROQ_API_KEY = os.getenv('GROQ_API_KEY', 'your-groq-api-key-here')  # Set via environment variable
 FIREBASE_KEY_PATH = 'firebase-key.json'
+API_BASE_URL = "https://api.groq.com/openai/v1"
 
 # Generate secure API key for backend
 BACKEND_API_KEY = os.getenv('BACKEND_API_KEY', "navriti_" + secrets.token_urlsafe(32))
@@ -50,10 +51,10 @@ def get_firebase_db():
             return None
     return _db
 
-# Initialize OpenAI client
+# Initialize Groq client (OpenAI-compatible)
 client = OpenAI(
-    base_url="https://openrouter.ai/api/v1",
-    api_key=OPENROUTER_API_KEY,
+    base_url=API_BASE_URL,
+    api_key=GROQ_API_KEY,
 )
 
 # --- REQUEST/RESPONSE MODELS ---
